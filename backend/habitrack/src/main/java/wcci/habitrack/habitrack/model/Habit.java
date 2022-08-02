@@ -1,5 +1,7 @@
 package wcci.habitrack.habitrack.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,6 +19,9 @@ public class Habit {
     private String category;
     private String frequency;
 
+    @ManyToOne @JsonIgnore
+    private Account account;
+
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Log> logs;
     @ElementCollection
@@ -28,11 +33,18 @@ public class Habit {
         this.buildOrBreak = buildOrBreak;
         this.habitIcon = habitIcon;
         this.category = category;
+        // Wellness
+        // Time management
+        // Behavior
         this.frequency = frequency;
         this.logs = Arrays.asList(logs);
     }
 
     public Habit() {}
+
+    public void setUser(Account account) {
+        this.account = account;
+    }
 
     public Long getId() {
         return id;
