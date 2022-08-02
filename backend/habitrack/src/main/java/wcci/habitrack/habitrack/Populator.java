@@ -6,18 +6,18 @@ import wcci.habitrack.habitrack.model.Habit;
 import wcci.habitrack.habitrack.model.Account;
 import wcci.habitrack.habitrack.repo.HabitRepository;
 import wcci.habitrack.habitrack.repo.LogRepository;
-import wcci.habitrack.habitrack.repo.UserRepository;
+import wcci.habitrack.habitrack.repo.AccountRepository;
 
 @Component
 public class Populator implements CommandLineRunner {
     private HabitRepository habitRepo;
     private LogRepository logRepo;
-    private UserRepository userRepo;
+    private AccountRepository accountRepo;
 
-    public Populator(HabitRepository habitRepo, LogRepository logRepo, UserRepository userRepo) {
+    public Populator(HabitRepository habitRepo, LogRepository logRepo, AccountRepository accountRepo) {
         this.habitRepo = habitRepo;
         this.logRepo = logRepo;
-        this.userRepo = userRepo;
+        this.accountRepo = accountRepo;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Populator implements CommandLineRunner {
         habitRepo.save(secondHabit);
 
         Account account1 = new Account("Admin", "Password", firstHabit, secondHabit);
-        userRepo.save(account1);
+        accountRepo.save(account1);
 
 //        user1.addHabit(firstHabit);
 //        user1.addHabit(secondHabit);
