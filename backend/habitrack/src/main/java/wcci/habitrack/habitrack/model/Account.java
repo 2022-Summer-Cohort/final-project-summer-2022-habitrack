@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
-public class User {
+public class Account {
     @Id
     @GeneratedValue
     private Long id;
@@ -16,16 +16,16 @@ public class User {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "account")
     private Collection<Habit> habits;
 
-    public User(String username, String password) {
+    public Account(String username, String password, Habit... habits) {
         this.username = username;
         this.password = password;
-        this.habits = new ArrayList<>();
+        this.habits = Arrays.asList(habits);
     }
 
-    public User() {}
+    public Account() {}
 
     public Long getId() {
         return id;
