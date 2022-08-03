@@ -8,21 +8,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+    <nav class="navbar-placeholder">
+        navbar here...
+    </nav>
+        <header>
+            <div class="header-text">
+                <h1>Habit Name</h1>
             </div>
+        </header>
+        <div class="single-habit-container">
+            <div class="current-streak">
+                <h2>Current Streak</h2>
+                <p><span>4</span> Day Streak</p>
+            </div>
+            <div class="complete">
+                <h2>Completed</h2>
+                <p><span class="num-completed">2</span> Days</p>
+            </div>
+            <div class="Failed">
+                <h2>Failed</h2>
+                <p><span class="num-failed">5</span> Days</p>
+            </div>
+            <div class="total">
+                <h2>Total</h2>
+                <p><span>7</span> Times</p>
+            </div>
+                <img src="/frontend/css/images/calendar-icon-white-background_1308-84634.webp" alt="Picture of a calender">
         </div>
-        
-        
-        
-    
-    </div>
-
     <script src="/js/navbar.js"></script>
 </body>
 </html>
