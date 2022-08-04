@@ -136,9 +136,8 @@
     align-items: center;
     background-color: #D9D9D9;
     border-radius: 44px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    width: 20%;
+    padding: 20px;
+    width: auto;
     height: auto;
 
 }
