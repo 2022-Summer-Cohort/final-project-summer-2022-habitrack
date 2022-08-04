@@ -3,7 +3,7 @@ export default function header(){
     <nav class="nav-bar">
     <h1>HABITRACK</h1>
         <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+            <button class="dropbtn">&#9776;</button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="#home">Aaron</a>
                     <a href="#about">Ahmed</a>
