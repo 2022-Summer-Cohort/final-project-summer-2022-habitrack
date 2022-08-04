@@ -1,16 +1,18 @@
 export default function header(){
     return `
-    <div class="nav-container">
-        <nav class="nav-container">
-            <div class="logo">
-                <h4>HabiTrack</h4>
-            </div>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-        </nav>
-     </div>
+    <nav class="nav-bar">
+    <h1>HABITRACK</h1>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#home">Aaron</a>
+                    <a href="#about">Ahmed</a>
+                    <a href="#contact">Alex</a>
+                    <a href="#contact">Blake</a>
+                    <a href="#contact">Chelsea</a>
+                    <a href="#contact">Lachu</a>
+                </div>
+        </div>  
+    </nav>
     `
 }

@@ -7,10 +7,26 @@
     <title>HabiTrack Home Prototype</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sulphur+Point:wght@300&display=swap');
+    </style>
 </head>
 <body>
+    <nav class="nav-bar">
+        <h1>HABITRACK</h1>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">&#9776;</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#home">Aaron</a>
+              <a href="#about">Ahmed</a>
+              <a href="#contact">Alex</a>
+              <a href="#contact">Blake</a>
+              <a href="#contact">Chelsea</a>
+              <a href="#contact">Lachu</a>
+            </div>
+          </div>  
+    </nav>
     <div class="container">
-    
         <div class="habits-background">
             <div class="habit">
                 <div class="progress-bar">
@@ -87,6 +103,26 @@
         </div>
     </div>
 
-    <script src="/js/navbar.js"></script>
+    <script>
+        /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+    </script>
 </body>
 </html>
