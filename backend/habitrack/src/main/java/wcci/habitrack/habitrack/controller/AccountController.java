@@ -17,4 +17,10 @@ public class AccountController {
     public Iterable<Account> getAllAccounts() {
         return accountRepo.findAll();
     }
+    
+    @PostMapping("/api/accounts/newAccount")
+    public Account createNewAccount(@RequestBody Account newAccount) {
+        accountRepo.save(newAccount);
+        return newAccount;
+    }
 }
