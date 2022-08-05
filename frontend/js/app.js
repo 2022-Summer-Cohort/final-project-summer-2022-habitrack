@@ -1,9 +1,10 @@
 import header from "./header.js";
 import logEntry from "./logEntry.js";
+import newHabit from "./newHabit.js";
 
 const container = document.querySelector(".container");
 container.innerHTML = header();
-container.innerHTML += logEntry();
+container.innerHTML += newHabit();
 
 const button = document.querySelector(".dropbtn");
 button.addEventListener("click", ()=>{myFunction()});

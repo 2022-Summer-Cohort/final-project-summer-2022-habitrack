@@ -123,21 +123,22 @@
       padding: .1rem .4rem;
     }
 }
-.log-container{
+.log-container, .new-habit-container{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.log-form{
+.log-form, .habit-form{
     display: flex;
     flex-direction: column;
     row-gap: 20px;
     align-items: center;
     background-color: #D9D9D9;
     border-radius: 44px;
-    padding: 20px;
-    width: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 400px;
     height: auto;
 
 }
@@ -241,3 +242,10 @@
   
   .show {display: block;}
 
+.goal{
+  display: flex;
+  column-gap: 15px;
+}
+.new-habit-save-button{
+  margin-top: 30px;
+}
