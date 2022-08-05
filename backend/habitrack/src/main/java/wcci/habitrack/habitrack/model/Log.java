@@ -3,7 +3,6 @@ package wcci.habitrack.habitrack.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Log {
@@ -35,11 +34,43 @@ public class Log {
 
     public Log() {}
 
+    public void setHabit(Habit theHabit) {
+        this.habit = theHabit;
+    }
+
+    public void setDidHabit(boolean didHabit) {
+        this.didHabit = didHabit;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public boolean isDidHabit() {
+    public boolean getDidHabit() {
         return didHabit;
     }
 

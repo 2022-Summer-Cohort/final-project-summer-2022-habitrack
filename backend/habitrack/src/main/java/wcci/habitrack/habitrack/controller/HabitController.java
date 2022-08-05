@@ -23,61 +23,42 @@ public class HabitController {
 
     @GetMapping("/api/habits/{id}")
     public Habit getHabitById(@PathVariable Long id) {
-        return habitRepo.findById(id).get();
+        if (habitRepo.findById(id).isPresent()) {
+            return habitRepo.findById(id).get();
+        }
+        return null;
     }
 
-    @PostMapping("/api/habits/newHabit")
-    public Iterable<Habit> addHabit(@RequestBody Habit newHabit) {
+    @GetMapping("/api/habits/{id}/logs")
+    public Iterable<Log> getHabitLogs(@PathVariable Long id) {
+        if (habitRepo.findById(id).isPresent()) {
+            return habitRepo.findById(id).get().getLogs();
+        }
+        return null;
+    }
+
+    @PostMapping("/api/habits/addHabit")
+    public Iterable<Habit> addNewHabit(@RequestBody Habit newHabit) {
         habitRepo.save(newHabit);
         return habitRepo.findAll();
     }
 
-    @DeleteMapping("/api/habits/{id}/removeHabit")
-    public Iterable<Habit> removeHabit(@PathVariable Long id) {
-        habitRepo.deleteById(id);
-        return habitRepo.findAll();
-    }
-
-    @PatchMapping("/api/habits/{id}/editName")
-    public Habit editHabitName(@PathVariable Long id, @RequestBody String newName) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.changeName(newName);
-        habitRepo.save(temp);
-        return temp;
-    }
-
-    @PatchMapping("/api/habits/{id}/editFrequency")
-    public Habit editHabitFrequency(@PathVariable Long id, @RequestBody String newFrequency) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.changeFrequency(newFrequency);
-        habitRepo.save(temp);
-        return temp;
-    }
-
-    @PatchMapping("/api/habits/{id}/editCategory")
-    public Habit editHabitCategory(@PathVariable Long id, @RequestBody String newCategory) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.changeCategory(newCategory);
-        habitRepo.save(temp);
-        return temp;
-    }
-
-    @PostMapping("/api/habits/{id}/newNote")
-    public Habit addHabitNote(@PathVariable Long id, @RequestBody String newNote) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.addNote(newNote);
-        habitRepo.save(temp);
-        return temp;
-    }
-
     @PostMapping("/api/habits/{id}/newLog")
-    public Habit addHabitLog(@PathVariable Long id, @RequestBody Log log) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.addLog(log);
-        logRepo.save(log);
-        habitRepo.save(temp);
-        return temp;
+    public Habit createNewHabitLog(@PathVariable Long id, @RequestBody Log newLog) {
+        if (habitRepo.findById(id).isPresent()) {
+            Habit habit = habitRepo.findById(id).get();
+            newLog.setHabit(habit);
+            logRepo.save(newLog);
+
+            return habit;
+        }
+        return null;
     }
+
+
+
+
+
 
 
 }

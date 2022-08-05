@@ -3,8 +3,8 @@ package wcci.habitrack.habitrack.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Habit {
@@ -13,36 +13,69 @@ public class Habit {
     private Long id;
 
     private String name;
-    private boolean completed;
-    private String buildOrBreak;
-    private String habitIcon;
-    private String category;
-    private String frequency;
+    private String type; // Build or Break
+    private String goalPeriod; // Daily, Weekly, Monthly, Yearly
+    private String color;
+    private String icon;
+    private double goal;
+
+    private double percentage; // How close are you to completing that goal
 
     @ManyToOne @JsonIgnore
-    private Account account;
-
+    private Account account; // Which account the habit is linked to
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Log> logs;
-    @ElementCollection
-    private Collection<String> notes;
 
-    public Habit(String name, boolean completed, String buildOrBreak, String habitIcon, String category, String frequency, Log... logs) {
+    public Habit(String name, String type, String goalPeriod, String color, String icon, double goal, Log... logs) {
         this.name = name;
-        this.completed = completed;
-        this.buildOrBreak = buildOrBreak;
-        this.habitIcon = habitIcon;
-        this.category = category;
-        // Wellness
-        // Time management
-        // Behavior
-        this.frequency = frequency;
-        this.logs = Arrays.asList(logs);
-    }
+        this.type = type;
+        this.goalPeriod = goalPeriod;
+        this.color = color;
+        this.icon = icon;
+        this.goal = goal;
+        this.logs = Set.of(logs);
 
+        this.percentage = updatePercentage();
+    }
     public Habit() {}
 
-    public void setUser(Account account) {
+    public double updatePercentage() {
+        double temp = 0.0;
+        for (Log log : logs) {
+            temp += log.getAmount();
+        }
+        return (temp/goal) * 100.0;
+    }
+
+    public void createNewLog(Log newLog) {
+        logs.add(newLog);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setGoalPeriod(String goalPeriod) {
+        this.goalPeriod = goalPeriod;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setGoal(double goal) {
+        this.goal = goal;
+    }
+
+    public void setAccount(Account account) {
         this.account = account;
     }
 
@@ -50,55 +83,39 @@ public class Habit {
         return id;
     }
 
-    public String getFrequency() {
-        return frequency;
-    }
-
     public String getName() {
         return name;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public String getType() {
+        return type;
     }
 
-    public String getBuildOrBreak() {
-        return buildOrBreak;
+    public String getGoalPeriod() {
+        return goalPeriod;
     }
 
-    public String getHabitIcon() {
-        return habitIcon;
+    public String getColor() {
+        return color;
     }
 
-    public String getCategory() {
-        return category;
+    public String getIcon() {
+        return icon;
+    }
+
+    public double getGoal() {
+        return goal;
+    }
+
+    public double getPercentage() {
+        return percentage;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public Collection<Log> getLogs() {
         return logs;
-    }
-
-    public Collection<String> getNotes() {
-        return notes;
-    }
-
-    public void addLog(Log log) {
-        logs.add(log);
-    }
-
-    public void addNote(String note) {
-        notes.add(note);
-    }
-
-    public void changeName(String newName) {
-        name = newName;
-    }
-
-    public void changeFrequency(String newFrequency) {
-        frequency = newFrequency;
-    }
-
-    public void changeCategory(String newCategory) {
-        category = newCategory;
     }
 }

@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -22,7 +22,7 @@ public class Account {
     public Account(String username, String password, Habit... habits) {
         this.username = username;
         this.password = password;
-        this.habits = Arrays.asList(habits);
+        this.habits = Set.of(habits);
     }
 
     public Account() {}
@@ -43,13 +43,8 @@ public class Account {
         return habits;
     }
 
-    public void addHabit(Habit habit) {
-        habits.add(habit);
+    public void createNewHabit(Habit newHabit) {
+        habits.add(newHabit);
     }
-
-    public void removeHabit(Habit habit) {
-        habits.remove(habit);
-    }
-
 
 }
