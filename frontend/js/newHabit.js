@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Habit</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+export default function newHabit(){
+    return `
     <div class="new-habit-container">
         <div class="habit-form">
         <div class="new-habit-name">
@@ -63,24 +55,23 @@
             </div>
             <div class="goal">
                 <label for="goal">Set your goal:</label>
-                <p>/</p>
                 <select name="" id="numOfTimes">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
-                    <option value="">10</option>
-                    <option value="">11</option>
-                    <option value="">12</option>
-                    <option value="">13</option>
-                    <option value="">14</option>
-                    <option value="">15</option>
-                </select>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+                <option value="">6</option>
+                <option value="">7</option>
+                <option value="">8</option>
+                <option value="">9</option>
+                <option value="">10</option>
+                <option value="">11</option>
+                <option value="">12</option>
+                <option value="">13</option>
+                <option value="">14</option>
+                <option value="">15</option>
+                </select><p>/</p>
                 <select name="" value="" id="per">
                     <option value="">Day</option>
                     <option value="">Week</option>
@@ -90,5 +81,5 @@
 
         </div>
     </div>
-</body>
-</html>
+    `
+}
