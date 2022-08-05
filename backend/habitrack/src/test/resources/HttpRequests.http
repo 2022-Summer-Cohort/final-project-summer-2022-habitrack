@@ -8,3 +8,9 @@ GET http://localhost:8080/api/users
 PATCH http://localhost:8080/api/habits/2/editName
 
 Falling asleep
+
+### Create a new account
+POST http://localhost:8080/api/accounts/newAccount
+Content-Type: application/json
+
+{"username": "Blake", "password": "Password"}
