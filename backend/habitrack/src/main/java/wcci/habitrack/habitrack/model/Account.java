@@ -1,9 +1,6 @@
 package wcci.habitrack.habitrack.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -16,13 +13,13 @@ public class Account {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Habit> habits;
 
-    public Account(String username, String password, Habit... habits) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.habits = Arrays.asList(habits);
+
     }
 
     public Account() {}

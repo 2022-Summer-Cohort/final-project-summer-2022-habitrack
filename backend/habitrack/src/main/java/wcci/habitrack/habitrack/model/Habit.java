@@ -15,11 +15,13 @@ public class Habit {
     private String name;
     private boolean completed;
     private String buildOrBreak;
+    private String color;
     private String habitIcon;
     private String category;
     private String frequency;
 
-    @ManyToOne @JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     private Account account;
 
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -27,10 +29,12 @@ public class Habit {
     @ElementCollection
     private Collection<String> notes;
 
-    public Habit(String name, boolean completed, String buildOrBreak, String habitIcon, String category, String frequency, Log... logs) {
+    public Habit(String name, Account account, boolean completed, String buildOrBreak, String color, String habitIcon, String category, String frequency, Log... logs) {
         this.name = name;
+        this.account = account;
         this.completed = completed;
         this.buildOrBreak = buildOrBreak;
+        this.color = color;
         this.habitIcon = habitIcon;
         this.category = category;
         // Wellness
@@ -56,6 +60,14 @@ public class Habit {
 
     public String getName() {
         return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public boolean isCompleted() {

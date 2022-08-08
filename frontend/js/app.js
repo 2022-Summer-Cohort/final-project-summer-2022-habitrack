@@ -2,8 +2,10 @@ import header from "./header.js";
 import logEntry from "./logEntry.js";
 import newHabit from "./newHabit.js";
 import login from "./login.js";
+import userDashboard from "./userDashboard.js";
 
 const container = document.querySelector(".container");
+
 
 function makeLoginView(){
   container.innerHTML = header();
@@ -46,13 +48,24 @@ if (password == ""){
     } else if (password != confirmPassword){
         alert("Password did not match try again.")
     } else if (password == confirmPassword){
-        alert("Account created")
-    loginForm.classList.remove("form--hidden");
-    createAccountForm.classList.add("form--hidden");
-    }
+      const newAccountJson = {
+        "username": newUser.value,
+        "password": password.value,
+        // "habits": [],
+      }
+      fetch(`http://localhost:8080/api/accounts/newAccount`, {
+        method: 'POST',
+        headers: {
+          'Content-type' : 'application/json'
+        },
+        body: JSON.stringify(newAccountJson)
+        })
+        .then(res => res.json())
+        .then(account => {
+          makeAccountView(account);
+        })
+      }}})
 
-
-}})
 const loginButton = document.querySelector("#login-button")
 loginButton.addEventListener("click", () => {
     const username = document.querySelector("#login-username").value;
@@ -64,19 +77,24 @@ loginButton.addEventListener("click", () => {
             alert("Please type in Password")
         }
     else{
-       alert("Welcome back")
+      fetch(`http://localhost:8080/api/${username}/habits`)
+      .then(res => res.json())
+      .then(habits => {
+        makeAccountView(habits)
+      })
     }
    
 })
 }
 
+
+
+
+
+
   makeLoginView();
   const button = document.querySelector(".dropbtn");
-button.addEventListener("click", ()=>{myFunction()});
-
-
-
-
+  button.addEventListener("click", ()=>{myFunction()});
      
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
@@ -94,4 +112,20 @@ function myFunction() {
         }
       }
     }
+  }
+
+  function makeAccountView(habits) {
+  console.log(habits);
+  container.innerHTML = header();
+  container.innerHTML += userDashboard(habits);
+  const button = document.querySelector(".dropbtn");
+  button.addEventListener("click", ()=>{myFunction()});
+  const habitColorChange = document.querySelectorAll(".progress-bar");
+  
+  habitColorChange.forEach(habitColorChoice => {
+    const habitColor = habitColorChoice.querySelector(".habit-color")
+    habitColorChoice.style.backgroundColor = habitColor.value;
+  })
+  
+
   }
