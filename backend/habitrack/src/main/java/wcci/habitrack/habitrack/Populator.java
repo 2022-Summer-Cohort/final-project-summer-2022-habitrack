@@ -23,20 +23,26 @@ public class Populator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Habit firstHabit = new Habit("Drink water", false, "Build", "", "Wellness", "");
-//        firstHabit.setUser(user1);
-        habitRepo.save(firstHabit);
 
-        Habit secondHabit = new Habit("Wake up early", false, "Build", "", "Behavior", "");
-//        secondHabit.setUser(user1);
+
+        Account account1 = new Account("Administrator", "Password");
+        accountRepo.save(account1);
+        Habit firstHabit = new Habit("Drink water", account1, false, "Build","#FFA07A", "", "Wellness", "");
+        habitRepo.save(firstHabit);
+        Habit secondHabit = new Habit("Wake up early", account1, false, "Build", "#D1C2F0","", "Behavior", "");
         habitRepo.save(secondHabit);
 
-        Account account1 = new Account("Admin", "Password", firstHabit, secondHabit);
-        accountRepo.save(account1);
+        Account account2 = new Account("TestUser", "password");
+        accountRepo.save((account2));
+        Habit thirdHabit = new Habit("Go to Bed Early", account2, false,"build","#FFA07A","","Behavior","");
+        habitRepo.save(thirdHabit);
+        Habit fourthHabit = new Habit("exercise",account2,false,"build","#FFA07A","","wellness","");
+        habitRepo.save(fourthHabit);
 
-//        user1.addHabit(firstHabit);
-//        user1.addHabit(secondHabit);
-//        userRepo.save(user1);
+
+
+
+
     }
 
 }
