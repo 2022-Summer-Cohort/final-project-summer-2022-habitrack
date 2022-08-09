@@ -113,4 +113,8 @@ public class Habit {
     public void changeCategory(String newCategory) {
         category = newCategory;
     }
+
+    public void addAccount(Account account) {
+        this.account = account;
+    }
 }

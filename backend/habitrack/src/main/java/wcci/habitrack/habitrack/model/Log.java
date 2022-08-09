@@ -17,19 +17,17 @@ public class Log {
     private boolean didHabit;
     @Lob
     private String note;
-    private String duration;
+
     private String timeStamp;
     private String date;
-    private double amount;
+
     private int rating;
 
-    public Log(boolean didHabit, String note, String duration, String timeStamp, String date, double amount, int rating) {
+    public Log(boolean didHabit, String note, String timeStamp, String date, int rating) {
         this.didHabit = didHabit;
         this.note = note;
-        this.duration = duration;
         this.timeStamp = timeStamp;
         this.date = date;
-        this.amount = amount;
         this.rating = rating;
     }
 
@@ -47,9 +45,7 @@ public class Log {
         return note;
     }
 
-    public String getDuration() {
-        return duration;
-    }
+
 
     public String getTimeStamp() {
         return timeStamp;
@@ -59,9 +55,7 @@ public class Log {
         return date;
     }
 
-    public double getAmount() {
-        return amount;
-    }
+
 
     public int getRating() {
         return rating;

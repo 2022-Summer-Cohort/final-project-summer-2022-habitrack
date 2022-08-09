@@ -8,7 +8,7 @@ export default function newHabit(){
         </div>
         <div class="checkbox">
             <label for="build">Build</label>
-            <input type="checkbox" name="build" id="build">
+            <input type="checkbox" name="build" id="build" value="true">
             <label for="break">Break</label>
             <input type="checkbox" name="break" id="break">
         </div>
@@ -56,25 +56,25 @@ export default function newHabit(){
             <div class="goal">
                 <label for="goal">Set your goal:</label>
                 <select name="" id="numOfTimes">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
-                <option value="">7</option>
-                <option value="">8</option>
-                <option value="">9</option>
-                <option value="">10</option>
-                <option value="">11</option>
-                <option value="">12</option>
-                <option value="">13</option>
-                <option value="">14</option>
-                <option value="">15</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
                 </select><p>/</p>
                 <select name="" value="" id="per">
-                    <option value="">Day</option>
-                    <option value="">Week</option>
+                    <option value="day">Day</option>
+                    <option value="week">Week</option>
                 </select>
             </div>
             <button class="new-habit-save-button button-40">Save</button>

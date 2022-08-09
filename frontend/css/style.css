@@ -142,7 +142,7 @@
     padding-bottom: 40px;
     width: 400px;
     height: auto;
-
+   
 }
 .log-form input{
     width: 30%;
@@ -250,4 +250,17 @@
 }
 .new-habit-save-button{
   margin-top: 30px;
+}
+.form--hidden{
+  display: none;
+}
+.cancel-button{
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+.cancel-button:hover{
+  font-size: 15px;
+  color: black;
+  cursor: pointer;
 }
