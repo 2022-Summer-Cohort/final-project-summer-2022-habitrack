@@ -1,6 +1,7 @@
 export default function userDashboard(habits){
     return `
     <div class="habits-background">
+   
     ${
         habits.map(habit => {
         return `
@@ -8,15 +9,16 @@ export default function userDashboard(habits){
             <div class="progress-bar">
                     <p class="habit-name">${habit.name}</p>
                     <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
-            </div>
-            <p id="edit">&#x270E</p><br>
+                    <input type="hidden" class="habit-id" value="${habit.id}">
+                    </div>
+            <p class="edit">&#x270E</p><br>
         </div>
+
+        
         `
     }).join("")
 }
-      
-    </div>
-
+</div>
 <div class="add-habit-button">
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 width="316.513px" height="316.513px" viewBox="0 0 316.513 316.513" style="enable-background:new 0 0 316.513 316.513;"

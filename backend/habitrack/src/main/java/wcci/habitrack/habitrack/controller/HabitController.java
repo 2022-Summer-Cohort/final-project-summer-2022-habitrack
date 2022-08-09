@@ -1,6 +1,7 @@
 package wcci.habitrack.habitrack.controller;
 
 import org.springframework.web.bind.annotation.*;
+import wcci.habitrack.habitrack.model.Account;
 import wcci.habitrack.habitrack.model.Habit;
 import wcci.habitrack.habitrack.model.Log;
 import wcci.habitrack.habitrack.repo.HabitRepository;
@@ -71,13 +72,13 @@ public class HabitController {
     }
 
     @PostMapping("/api/habits/{id}/newLog")
-    public Habit addHabitLog(@PathVariable Long id, @RequestBody Log log) {
-        Habit temp = habitRepo.findById(id).get();
-        temp.addLog(log);
-        logRepo.save(log);
-        habitRepo.save(temp);
-        return temp;
+    public Iterable<Habit> newLogEntry(@PathVariable Long id, @RequestBody Log log){
+        Habit habitTemp = habitRepo.findById(id).get();
+        Account accountTemp = habitTemp.getAccount();
+        Log logToAdd = new Log(log.isDidHabit(),log.getNote(), log.getTimeStamp(), log.getDate(), log.getRating());
+        habitTemp.addLog(logToAdd);
+        habitRepo.save(habitTemp);
+        return habitRepo.findByAccount(accountTemp);
     }
-
 
 }
