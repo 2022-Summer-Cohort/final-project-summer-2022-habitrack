@@ -129,6 +129,7 @@ function makeAccountView(habits, username) {
   habitsView.forEach((habit) => {
     const logEntry = habit.querySelector(".edit");
     const habitId = habit.querySelector(".habit-id");
+    const deleteHabit = habit.querySelector(".delete-habit");
 
     logEntry.addEventListener("click", () => {
       fetch(`http://localhost:8080/api/habits/${habitId.value}`)
@@ -137,6 +138,15 @@ function makeAccountView(habits, username) {
           makeLogEntryView(habit);
         });
     });
+    deleteHabit.addEventListener("click", () => {
+      fetch(`http://localhost:8080/api/habits/${habitId.value}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(habits => {
+        makeAccountView(habits, username);
+      })
+    })
   });
 
   const addHabitButton = document.querySelector(".add-habit-button")
@@ -155,7 +165,7 @@ function makeAccountView(habits, username) {
 
     const habitId = document.querySelector(".habit-id");
     const logDate = document.querySelector(".log-date");
-    const logCheckbox = document.querySelector(".log-check-yes");
+    
     const logTime = document.querySelector(".log-time");
     const logReflection = document.querySelector(".log-reflection");
     const logNote = document.querySelector("#note");
@@ -163,14 +173,19 @@ function makeAccountView(habits, username) {
     const saveButton = document.querySelector(".save-button");
     saveButton.addEventListener("click", () => {
       const newLogJson = {
-        didHabit: logCheckbox.value,
-        note: logNote.value,
-        timeStamp: logTime.value,
-        date: logDate.value,
-        rating: logReflection.value,
-      };
+              
+              note: logNote.value,
+              timeStamp: logTime.value,
+              date: logDate.value,
+              rating: logReflection.value,
+            };
 
-      fetch(`http://localhost:8080/api/habits/${habitId.value}/newLog`, {
+
+      if(logNote.value == []){
+        alert("Please enter note for this log.")
+      } else{
+        
+         fetch(`http://localhost:8080/api/habits/${habitId.value}/newLog`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -182,6 +197,8 @@ function makeAccountView(habits, username) {
           console.log(newLogJson);
           makeAccountView(habits, username);
         });
+      }
+  
     });
 
     const cancelButton = document.querySelector(".cancel-button");
@@ -206,21 +223,18 @@ function makeAccountView(habits, username) {
     const habitFreq = document.querySelector("#numOfTimes")
     const perDayOrWeek = document.querySelector("#per")
     const habitIcon = document.querySelector("#habit-icon")
-    const habitBuild = document.querySelector("#build")
-    const habitBreak = document.querySelector("#break")
-    
+    const habitType = document.querySelector("#habit-type")
 
     const saveButton = document.querySelector(".new-habit-save-button")
-    saveButton.addEventListener("click", ()=> {
+    saveButton.addEventListener("click", ()=> { 
 
-      
       const newHabitJson = {
           "name": habitName.value,
           "color": colorChoice.value,
           "frequency": habitFreq.value,
           "icon": habitIcon.value,
           "time": perDayOrWeek.value,
-          
+          "type": habitType.value,
         }
           console.log(newHabitJson)
           console.log(username)
@@ -235,6 +249,16 @@ function makeAccountView(habits, username) {
       .then(habits => {
         makeAccountView(habits,username);
       });
+    });
+
+    const cancelButton = document.querySelector(".cancel-button");
+
+    cancelButton.addEventListener("click", () => {
+      fetch(`http://localhost:8080/api/${username}/habits`)
+        .then((res) => res.json())
+        .then((habits) => {
+          makeAccountView(habits, username);
+        });
     });
   }
 }

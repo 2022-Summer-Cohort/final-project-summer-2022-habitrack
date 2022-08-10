@@ -33,10 +33,11 @@ public class HabitController {
         return habitRepo.findAll();
     }
 
-    @DeleteMapping("/api/habits/{id}/removeHabit")
+    @DeleteMapping("/api/habits/{id}")
     public Iterable<Habit> removeHabit(@PathVariable Long id) {
+        Account tempAccount = habitRepo.findById(id).get().getAccount();
         habitRepo.deleteById(id);
-        return habitRepo.findAll();
+        return tempAccount.getHabits();
     }
 
     @PatchMapping("/api/habits/{id}/editName")

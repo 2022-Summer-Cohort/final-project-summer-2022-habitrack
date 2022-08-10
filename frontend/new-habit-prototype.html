@@ -14,11 +14,12 @@
             <label for="habit-name">Habit Name:</label>
             <input type="text" name="Habit Name" id="habit-name">
         </div>
-        <div class="checkbox">
-            <label for="build">Build</label>
-            <input type="checkbox" name="build" id="build">
-            <label for="break">Break</label>
-            <input type="checkbox" name="break" id="break">
+        <div class="build-or-break">
+            <label for="habit-type">Type:</label>
+            <select name="" id="habit-type">
+                <option value="Build">Build</option>
+                <option value="Break">Break</option>
+            </select>
         </div>
         <div class="color">
             <label for="habit-color">Color:</label>
@@ -90,5 +91,6 @@
 
         </div>
     </div>
+    <script src="./js/test-checkbox.js">checkBoxLimit()</script>
 </body>
 </html>

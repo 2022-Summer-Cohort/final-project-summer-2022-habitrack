@@ -1,16 +1,17 @@
-export default function newHabit(){
-    return `
+export default function newHabit() {
+  return `
     <div class="new-habit-container">
         <div class="habit-form">
         <div class="new-habit-name">
             <label for="habit-name">Habit Name:</label>
             <input type="text" name="Habit Name" id="habit-name">
         </div>
-        <div class="checkbox">
-            <label for="build">Build</label>
-            <input type="checkbox" name="build" id="build" value="true">
-            <label for="break">Break</label>
-            <input type="checkbox" name="break" id="break">
+        <div class="build-or-break">
+            <label for="habit-type">Type:</label>
+            <select name="" id="habit-type">
+                <option value="Build">Build</option>
+                <option value="Break">Break</option>
+            </select>
         </div>
         <div class="color">
             <label for="habit-color">Color:</label>
@@ -31,25 +32,25 @@ export default function newHabit(){
         <div class="icon">
             <label for="habit-icon">Icon:</label>
             <select name="icon" id="habit-icon">
-                <option value="&#9200;">&#9200;</option>
-                <option value="">&#9940;</option>
-                <option value="">&#129367;</option>
-                <option value="">&#129382;</option>
-                <option value="">&#127827;</option>
-                <option value="">&#127866;</option>
-                <option value="">&#127869;</option>
-                <option value="">&#127912;</option>
-                <option value="">&#127926;</option>
-                <option value="">&#127939;</option>
-                <option value="">&#127947;</option>
-                <option value="">&#128095;</option>
-                <option value="">&#128181;</option>
-                <option value="">&#128218;</option>
-                <option value="">&#128241;</option>
-                <option value="">&#128250;</option>
-                <option value="">&#128684;</option>
-                <option value="">&#128690;</option>
-                <option value="">&#128719;</option>
+                <option value="&#9200">&#9200;</option>
+                <option value="&#9940">&#9940;</option>
+                <option value="&#129367">&#129367;</option>
+                <option value="&#129382">&#129382;</option>
+                <option value="&#127827">&#127827;</option>
+                <option value="&#127866">&#127866;</option>
+                <option value="&#127869">&#127869;</option>
+                <option value="&#127912">&#127912;</option>
+                <option value="&#127926">&#127926;</option>
+                <option value="&#127939">&#127939;</option>
+                <option value="&#127947">&#127947;</option>
+                <option value="&#128095">&#128095;</option>
+                <option value="&#128181">&#128181;</option>
+                <option value="&#128218">&#128218;</option>
+                <option value="&#128241">&#128241;</option>
+                <option value="&#128250">&#128250;</option>
+                <option value="&#128684">&#128684;</option>
+                <option value="&#128690">&#128690;</option>
+                <option value="&#128719">&#128719;</option>
 
             </select>
             </div>
@@ -78,8 +79,10 @@ export default function newHabit(){
                 </select>
             </div>
             <button class="new-habit-save-button button-40">Save</button>
-
+         
+            <h3 class="cancel-button">Cancel</h3>
+            
         </div>
     </div>
-    `
+    `;
 }
