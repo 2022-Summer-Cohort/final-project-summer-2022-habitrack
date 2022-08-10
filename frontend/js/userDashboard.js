@@ -11,7 +11,10 @@ export default function userDashboard(habits){
                     <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
                     <input type="hidden" class="habit-id" value="${habit.id}">
                     </div>
-            <p class="edit">&#x270E</p><br>
+            <div class="edit-buttons">
+                <p class="edit">🗒</p><br>
+                <p class="delete-habit">🗑</p><br>
+            </div>    
         </div>
 
         

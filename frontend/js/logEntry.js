@@ -11,29 +11,12 @@ export default function logEntry(habit){
           type="date"
           name="date"
           id="log-date"
-          value="2000-01-01"
+          value="2022-01-01"
           min="2000-01-01"
           max="2025-01-01"
         />
         <input class="log-time" type="time" name="time" id="log-time" value="00:00" />
-        <div class="yes-checkbox">
-          <label for="log-completed-yes">Yes</label>
-          <input
-            class="log-check-yes"
-            type="checkbox"
-            name="completed"
-            value="false"
-            id="log-completed-yes"
-          />
-          <label for="log-completed-no">No</label>
-          <input
-            type="checkbox"
-            name="completed"
-            value="no"
-            id="log-completed-no"
-          />
-          
-        </div>
+
         <div class="reflection">
             <ul>
                 <span>I am feeling:</span>
