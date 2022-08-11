@@ -20,6 +20,14 @@ body {
     background: #ffffff;
 }
 
+@media only screen and (max-width: 600px) {
+    .login-container{
+        width: auto;
+        max-width: auto;;
+    }
+    
+}
+
 .login-container,
 .form__input,
 .form__button {
