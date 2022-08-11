@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HabiTrack Habit Prototype</title>
-    <script src="//cdn.jsdelivr.net/npm/calendar-base@1.0.0/dist/calendarbase.umd.production.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/calendar.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-   
-        <div class="habit-container">
+export default function habitSummary(habit){
+return`
+<div class="habit-container">
+       
             <div class="habit-form">
-            <h1>Habit Name</h1>
+            <div class="back-button">
+                <p class="fa-solid fa-x">&#x2715;</p>
+            </div>
+            <h1>${habit.name}</h1>
+            <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
             <div class="calendar">
                 <div class="month">
                     <i class="fas fa-angle-left prev"></i>
@@ -44,31 +37,42 @@
                     <div class="next-date">6</div>
                 </div>
             </div>
+            <div class="goal">
+                <h3>Current Goal:</h3>
+                <p class="repetitions">${habit.reps}</p>
+                <p class="per">times per</p>
+                <p class="frequency">${habit.frequency}</p>
+            </div>
             <div class="current-streak">
-                <h2>Current Streak</h2>
-                <p><span>4</span> Day Streak</p>
+                ${ 
+                    habit.logs.map(log=> {
+                        return `
+
+                        <div class="note">
+                            <h3>${log.note}</h3>
+                            
+                        </div>
+                        
+                        `
+                    }).join("")
+                }
+
+               
             </div>
             <div class="complete">
-                <h2>Completed</h2>
-               
+                <h3>Completed</h3>
+                <p></p>
                 <div class="progress-bar">
                     <div id="my-bar">
 
                     </div>
                 </div>
             </div>
-            <!-- <div class="Failed">
-                <h2>Failed</h2>
-                <p><span class="num-failed">5</span> Days</p>
-            </div>
-            <div class="total">
-                <h2>Total</h2>
-                <p><span>7</span> Times</p>
-            </div> -->
+            
             </div>
         
             </div>
 
-    <script src="/js/calendar.js"></script>
-</body>
-</html>
+`
+
+}

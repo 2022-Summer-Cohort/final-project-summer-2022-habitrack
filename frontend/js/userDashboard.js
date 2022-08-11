@@ -6,7 +6,7 @@ export default function userDashboard(habits){
         habits.map(habit => {
         return `
           <div class="habit">
-            <div class="progress-bar">
+            <div class="habit-progress">
                     <p class="habit-name">${habit.name}</p>
                     <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
                     <input type="hidden" class="habit-id" value="${habit.id}">

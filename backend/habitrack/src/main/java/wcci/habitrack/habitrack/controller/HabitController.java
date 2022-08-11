@@ -76,9 +76,8 @@ public class HabitController {
     public Iterable<Habit> newLogEntry(@PathVariable Long id, @RequestBody Log log){
         Habit habitTemp = habitRepo.findById(id).get();
         Account accountTemp = habitTemp.getAccount();
-        Log logToAdd = new Log(log.isDidHabit(),log.getNote(), log.getTimeStamp(), log.getDate(), log.getRating());
-        habitTemp.addLog(logToAdd);
-        habitRepo.save(habitTemp);
+        Log logToAdd = new Log(log.isDidHabit(),log.getNote(), log.getTime(), log.getDate(), log.getRating(), habitTemp);
+        logRepo.save(logToAdd);
         return habitRepo.findByAccount(accountTemp);
     }
 

@@ -27,16 +27,16 @@ public class Populator implements CommandLineRunner {
 
         Account account1 = new Account("Administrator", "Password");
         accountRepo.save(account1);
-        Habit firstHabit = new Habit("Drink water", account1, false, "Build","#FFA07A", "", "Wellness", "");
+        Habit firstHabit = new Habit("Drink water", account1, false, "Build","#FFA07A", "", "Wellness", 8, "day");
         habitRepo.save(firstHabit);
-        Habit secondHabit = new Habit("Wake up early", account1, false, "Build", "#D1C2F0","", "Behavior", "");
+        Habit secondHabit = new Habit("Wake up early", account1, false, "Build", "#D1C2F0","", "Behavior",5, "week");
         habitRepo.save(secondHabit);
 
         Account account2 = new Account("TestUser", "password");
         accountRepo.save((account2));
-        Habit thirdHabit = new Habit("Go to Bed Early", account2, false,"build","#FFA07A","","Behavior","");
+        Habit thirdHabit = new Habit("Go to Bed Early", account2, false,"build","#FFA07A","","Behavior",5,"week");
         habitRepo.save(thirdHabit);
-        Habit fourthHabit = new Habit("exercise",account2,false,"build","#FFA07A","","wellness","");
+        Habit fourthHabit = new Habit("exercise",account2,false,"build","#FFA07A","","wellness",3,"week");
         habitRepo.save(fourthHabit);
 
 

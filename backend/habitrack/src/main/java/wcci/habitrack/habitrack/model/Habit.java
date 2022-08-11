@@ -18,6 +18,7 @@ public class Habit {
     private String color;
     private String habitIcon;
     private String category;
+    private int reps;
     private String frequency;
 
     @ManyToOne
@@ -29,7 +30,7 @@ public class Habit {
     @ElementCollection
     private Collection<String> notes;
 
-    public Habit(String name, Account account, boolean completed, String buildOrBreak, String color, String habitIcon, String category, String frequency, Log... logs) {
+    public Habit(String name, Account account, boolean completed, String buildOrBreak, String color, String habitIcon, String category, int reps, String frequency, Log... logs) {
         this.name = name;
         this.account = account;
         this.completed = completed;
@@ -40,6 +41,7 @@ public class Habit {
         // Wellness
         // Time management
         // Behavior
+        this.reps = reps;
         this.frequency = frequency;
         this.logs = Arrays.asList(logs);
     }
@@ -64,6 +66,10 @@ public class Habit {
 
     public String getColor() {
         return color;
+    }
+
+    public int getReps() {
+        return reps;
     }
 
     public Account getAccount() {
@@ -102,10 +108,15 @@ public class Habit {
         notes.add(note);
     }
 
+    public int logCount(){
+        return logs.size();
+    }
     public void changeName(String newName) {
         name = newName;
     }
-
+    public void changeReps(int newReps){
+        reps = newReps;
+    }
     public void changeFrequency(String newFrequency) {
         frequency = newFrequency;
     }
