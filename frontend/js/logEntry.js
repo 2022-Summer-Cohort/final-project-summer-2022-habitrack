@@ -3,6 +3,9 @@ export default function logEntry(habit){
     <div class="log-container">
         
       <div class="log-form">
+        <div class="back-button">
+          <p class="fa-solid fa-x">&#x2715;</p>
+        </div>
         <h1>${habit.name}</h1>
         <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
         <input type="hidden" class="habit-id" value="${habit.id}">
@@ -36,8 +39,6 @@ export default function logEntry(habit){
             <br>
             <button class="button-40 save-button">Save</button>
             <br>
-            <br>
-            <h3 class="cancel-button">Cancel</h3>
         </div>
 
       </div>

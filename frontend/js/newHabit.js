@@ -2,6 +2,9 @@ export default function newHabit() {
   return `
     <div class="new-habit-container">
         <div class="habit-form">
+        <div class="back-button">
+            <p class="fa-solid fa-x">&#x2715;</p>
+        </div>
         <div class="new-habit-name">
             <label for="habit-name">Habit Name:</label>
             <input type="text" name="Habit Name" id="habit-name">
@@ -80,7 +83,7 @@ export default function newHabit() {
             </div>
             <button class="new-habit-save-button button-40">Save</button>
          
-            <h3 class="cancel-button">Cancel</h3>
+           
             
         </div>
     </div>

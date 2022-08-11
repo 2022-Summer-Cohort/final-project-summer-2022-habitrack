@@ -18,17 +18,18 @@ public class Log {
     @Lob
     private String note;
 
-    private String timeStamp;
+    private String time;
     private String date;
 
     private int rating;
 
-    public Log(boolean didHabit, String note, String timeStamp, String date, int rating) {
+    public Log(boolean didHabit, String note, String time, String date, int rating, Habit habit) {
         this.didHabit = didHabit;
         this.note = note;
-        this.timeStamp = timeStamp;
+        this.time = time;
         this.date = date;
         this.rating = rating;
+        this.habit = habit;
     }
 
     public Log() {}
@@ -47,8 +48,8 @@ public class Log {
 
 
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTime() {
+        return time;
     }
 
     public String getDate() {
@@ -60,7 +61,9 @@ public class Log {
     public int getRating() {
         return rating;
     }
-
+    public int getCount(){
+       return habit.logCount();
+    }
     public Habit getHabit() {
         return habit;
     }
