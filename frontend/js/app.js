@@ -172,11 +172,16 @@ function makeAccountView(habits, username) {
     const logColor = document.querySelector(".log-form");
     const habitColor = document.querySelector(".habit-color");
     logColor.style.backgroundColor = habitColor.value;
-
+  
     const habitId = document.querySelector(".habit-id");
     const logDate = document.querySelector(".log-date");
-
+    const today = new Date();
+    const currentTime = today.getHours() + ':' + today.getMinutes();
+    logDate.value = new Date().toISOString().split('T')[0];
     const logTime = document.querySelector(".log-time");
+    logTime.value = currentTime;
+    console.log(currentTime);
+
     const logReflection = document.querySelector(".log-reflection");
     const logNote = document.querySelector("#note");
 
@@ -286,86 +291,103 @@ function makeAccountView(habits, username) {
       const habitColor = habitColorChoice.querySelector(".habit-color");
       habitColorChoice.style.backgroundColor = habitColor.value;
     });
-    const date = new Date();
+    // const date = new Date();
 
-    const renderCalendar = () => {
-      date.setDate(1);
-      const monthDays = document.querySelector(".days");
-      const lastDay = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0
-      ).getDate();
+    // const renderCalendar = () => {
+    //   date.setDate(1);
+    //   const monthDays = document.querySelector(".days");
+    //   const lastDay = new Date(
+    //     date.getFullYear(),
+    //     date.getMonth() + 1,
+    //     0
+    //   ).getDate();
 
-      const prevLastDay = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        0
-      ).getDate();
-      console.log(prevLastDay);
+    //   const prevLastDay = new Date(
+    //     date.getFullYear(),
+    //     date.getMonth(),
+    //     0
+    //   ).getDate();
+    //   console.log(prevLastDay);
 
-      const firstDayIndex = date.getDay();
+    //   const firstDayIndex = date.getDay();
 
-      const lastDayIndex = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0
-      ).getDay();
+    //   const lastDayIndex = new Date(
+    //     date.getFullYear(),
+    //     date.getMonth() + 1,
+    //     0
+    //   ).getDay();
 
-      const nextDays = 7 - lastDayIndex - 1;
+    //   const nextDays = 7 - lastDayIndex - 1;
 
-      const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
+    //   const months = [
+    //     "January",
+    //     "February",
+    //     "March",
+    //     "April",
+    //     "May",
+    //     "June",
+    //     "July",
+    //     "August",
+    //     "September",
+    //     "October",
+    //     "November",
+    //     "December",
+    //   ];
 
-      document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+    //   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
 
-      document.querySelector(".date p").innerHTML = new Date().toDateString();
+    //   document.querySelector(".date p").innerHTML = new Date().toDateString();
 
-      let days = "";
+    //   let days = "";
 
-      for (let x = firstDayIndex; x > 0; x--) {
-        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-      }
+    //   for (let x = firstDayIndex; x > 0; x--) {
+    //     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    //   }
 
-      for (let i = 1; i <= lastDay; i++) {
-        if (
-          i === new Date().getDate() &&
-          date.getMonth() === new Date().getMonth()
-        ) {
-          days += `<div class="today">${i}</div>`;
-        } else {
-          days += `<div>${i}</div>`;
-        }
-      }
+    //   for (let i = 1; i <= lastDay; i++) {
+    //     if (
+    //       i === new Date().getDate() &&
+    //       date.getMonth() === new Date().getMonth()
+    //     ) {
+    //       days += `<div class="today">${i}</div>`;
+    //     } else {
+    //       days += `<div>${i}</div>`;
+    //     }
+    //   }
 
-      for (let j = 1; j <= nextDays; j++) {
-        days += `<div class="next-date">${j}</div>`;
-        monthDays.innerHTML = days;
-      }
-    };
+    //   for (let j = 1; j <= nextDays; j++) {
+    //     days += `<div class="next-date">${j}</div>`;
+    //     monthDays.innerHTML = days;
+    //   }
 
-    document.querySelector(".prev").addEventListener("click", () => {
-      date.setMonth(date.getMonth() - 1);
-      renderCalendar();
-    });
-    document.querySelector(".next").addEventListener("click", () => {
-      date.setMonth(date.getMonth() + 1);
-      renderCalendar();
-    });
+    // };
 
-    renderCalendar();
+    // document.querySelector(".prev").addEventListener("click", () => {
+    //   date.setMonth(date.getMonth() - 1);
+    //   renderCalendar();
+    // });
+    // document.querySelector(".next").addEventListener("click", () => {
+    //   date.setMonth(date.getMonth() + 1);
+    //   renderCalendar();
+    // });
+
+    // renderCalendar();
    
+    const logTotal = habit.logs; 
+    const logCount = logTotal.length;
+    const repetitions = document.querySelector(".streak")
+    repetitions.innerHTML = logCount;
+    console.log(logCount)
+    const progressBar = document.querySelector(".progress-bar").offsetWidth
+    console.log(progressBar);
+    const percentDone = logCount/66;
+    const myProgress = document.getElementById('my-bar');
+    myProgress.style.width = "" + percentDone*progressBar + "px";
+    console.log(percentDone);
+    
+    
+    
+   
+    
   }
 }

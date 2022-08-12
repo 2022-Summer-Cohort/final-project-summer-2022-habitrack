@@ -14,11 +14,11 @@ export default function logEntry(habit){
           type="date"
           name="date"
           id="log-date"
-          value="2022-01-01"
+          value=""
           min="2000-01-01"
           max="2025-01-01"
         />
-        <input class="log-time" type="time" name="time" id="log-time" value="00:00" />
+        <input class="log-time" type="time" name="time" id="log-time" value="" />
 
         <div class="reflection">
             <ul>

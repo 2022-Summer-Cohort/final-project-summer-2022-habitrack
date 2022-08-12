@@ -31,13 +31,13 @@
     background-color: #f1f1f1 !important
 }
 .habit-progress{
-  width:70%;
+  width:80%;
   cursor: pointer;
 }
 
 .habit{
     margin-top: 10%;
-    width: 100%;
+    /* width: 100%; */
     margin-left: 10%;
     display: flex;
     column-gap: 20px;
@@ -308,17 +308,28 @@
   cursor: pointer;
 }
 .progress-bar {
-  width: 80%;
+  width: 150px;
   
   border: 1.2px solid black;
   height: 10px;
 }
 #my-bar{
-  width: 10%;
+  width: 15px;
   height: 8px;
-  background-color: aqua;
+  background-color: white;
 }
 .back-button {
   margin-right: 80%;
   cursor: pointer;
+}
+.complete{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+.current-streak{
+  display: flex;
+  column-gap: 7px;
+  align-items: center;
 }
