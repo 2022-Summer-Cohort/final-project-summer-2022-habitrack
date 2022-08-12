@@ -118,11 +118,17 @@ function makeAccountView(habits, username) {
     myFunction();
   });
 
-  const habitColorChange = document.querySelectorAll(".habit-progress");
-
+  const habitColorChange = document.querySelectorAll(".my-habit-progress");
+  
   habitColorChange.forEach((habitColorChoice) => {
+    const numReps = habitColorChoice.querySelector(".logs")
+    const percentComplete = numReps.value/66;
+    const width = document.querySelector(".habit-progress").offsetWidth;
+    const percentProg = habitColorChoice.querySelector(".percent-progress");
     const habitColor = habitColorChoice.querySelector(".habit-color");
     habitColorChoice.style.backgroundColor = habitColor.value;
+    habitColorChoice.style.width = "" + percentComplete*width + "px";
+    percentProg.innerText = Math.floor(percentComplete*100) + "%";
   });
 
   const habitsView = document.querySelectorAll(".habit");

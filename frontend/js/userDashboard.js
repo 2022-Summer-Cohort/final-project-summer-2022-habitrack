@@ -7,9 +7,15 @@ export default function userDashboard(habits){
         return `
           <div class="habit">
             <div class="habit-progress">
+                <div class="my-habit-progress">
                     <p class="habit-name">${habit.name}</p>
+                    <p class="percent-progress"></p>
                     <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
                     <input type="hidden" class="habit-id" value="${habit.id}">
+                    <input type="hidden" class="logs" value="${habit.reps}">
+                
+                    </div>
+     
                     </div>
             <div class="edit-buttons">
                 <p class="edit">🗒</p><br>
