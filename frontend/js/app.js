@@ -123,7 +123,9 @@ function makeAccountView(habits, username) {
   
   habitColorChange.forEach((habitColorChoice) => {
     const numReps = habitColorChoice.querySelector(".logs")
+    console.log(numReps)
     const percentComplete = numReps.value/66;
+    console.log(percentComplete);
     const width = document.querySelector(".habit-progress").offsetWidth;
     const percentProg = habitColorChoice.querySelector(".percent-progress");
     const habitColor = habitColorChoice.querySelector(".habit-color");
