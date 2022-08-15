@@ -4,6 +4,7 @@ import newHabit from "./newHabit.js";
 import login from "./login.js";
 import userDashboard from "./userDashboard.js";
 import habitSummary from "./habit-summary.js";
+import logPage from "./log-page.js";
 
 const container = document.querySelector(".container");
 
@@ -195,7 +196,7 @@ function makeAccountView(habits, username) {
     saveButton.addEventListener("click", () => {
       const newLogJson = {
         note: logNote.value,
-        timeStamp: logTime.value,
+        time: currentTime,
         date: logDate.value,
         rating: logReflection.value,
       };
@@ -238,7 +239,6 @@ function makeAccountView(habits, username) {
     const habitFreq = document.querySelector("#numOfTimes");
     const perDayOrWeek = document.querySelector("#per");
     const habitIcon = document.querySelector("#habit-icon");
-    const habitType = document.querySelector("#habit-type");
 
     const saveButton = document.querySelector(".new-habit-save-button");
     saveButton.addEventListener("click", () => {
@@ -297,6 +297,16 @@ function makeAccountView(habits, username) {
       const habitColor = habitColorChoice.querySelector(".habit-color");
       habitColorChoice.style.backgroundColor = habitColor.value;
     });
+    const habitID = document.querySelector("#habitID");
+    const logBTN = document.querySelector("#log-btn");
+    logBTN.addEventListener("click", () => {
+      fetch(`http://localhost:8080/api/habits/${habitID.value}/allLogs`)
+      .then((res) => res.json())
+      .then((habit) => {
+        makeAllLogView(habit);
+      })
+    })
+
     // const date = new Date();
 
     // const renderCalendar = () => {
@@ -395,5 +405,20 @@ function makeAccountView(habits, username) {
     
    
     
+  }
+  function makeAllLogView(habit){
+    container.innerHTML = header();
+    container.innerHTML += logPage(habit);
+    const logPages = document.querySelectorAll(".log__info");
+    logPages.forEach(log => {
+      const logDate = log.querySelector(".log__date");
+      const logTime = log.querySelector(".log__time");
+      const logNote = log.querySelector(".log__note");
+      const logRating = log.querySelector("log-rating");
+      // const logJSON = log.querySelector("")
+      console.log(logTime.value);
+    })
+    const logRating = log.querySelector("log-rating");
+    logRating.innerHTML = 
   }
 }

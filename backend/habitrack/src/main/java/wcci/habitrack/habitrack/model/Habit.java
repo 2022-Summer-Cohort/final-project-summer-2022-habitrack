@@ -128,4 +128,7 @@ public class Habit {
     public void addAccount(Account account) {
         this.account = account;
     }
+    public Iterable<Log> showAllLogs(){
+        return logs;
+    }
 }

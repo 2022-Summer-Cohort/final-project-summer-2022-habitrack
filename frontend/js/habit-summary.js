@@ -25,6 +25,8 @@ return`
                     <div id="my-bar">
                         
                     </div>
+                    <p id="log-btn" class="edit">🗒</p>
+                    <input type="hidden" id="habitID" value="${habit.id}">
                 </div>
             </div>
             
