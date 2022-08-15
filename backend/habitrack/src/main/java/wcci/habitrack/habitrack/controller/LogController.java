@@ -1,9 +1,8 @@
 package wcci.habitrack.habitrack.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wcci.habitrack.habitrack.model.Habit;
+import wcci.habitrack.habitrack.model.Log;
 import wcci.habitrack.habitrack.repo.HabitRepository;
 import wcci.habitrack.habitrack.repo.LogRepository;
 
