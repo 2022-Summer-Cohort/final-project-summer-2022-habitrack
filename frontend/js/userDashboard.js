@@ -4,6 +4,10 @@ export default function userDashboard(habits){
    
     ${
         habits.map(habit => {
+            let numLogs = 0;
+            if(habit.logs != null){
+                numLogs = habit.logs.length
+            }
         return `
           <div class="habit">
             <div class="habit-progress">
@@ -12,16 +16,20 @@ export default function userDashboard(habits){
                     <p class="percent-progress"></p>
                     <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
                     <input type="hidden" class="habit-id" value="${habit.id}">
-                    <input type="hidden" class="logs" value="${habit.logs.length}">
+                    <input type="hidden" class="logs" value="${numLogs}">
                 </div>
                 <div class = "logs">
-                    ${
+                    ${ 
+                        (numLogs>0 ? 
+                        
                         habit.logs.map(log => {
                             return `
                             <input type="hidden" class="habit-log-count" value="">
                             `
-                        }).join("")
+                        }).join(""):
+                        "")
                     }
+
                 </div>
      
             </div>

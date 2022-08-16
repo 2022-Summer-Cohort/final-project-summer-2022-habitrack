@@ -5,7 +5,7 @@ export default function header(){
         <div class="dropdown">
             <button class="dropbtn">&#9776;</button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#home">Aaron</a>
+                    <a href="https://www.linkedin.com/in/aaron-kuhman/ target="_blank">Aaron</a>
                     <a href="https://github.com/ahmed1484" target="_blank">Ahmed</a>
                     <a href="https://www.linkedin.com/in/alexander-waterman/" target="_blank">Alex</a>
                     <a href="https://blakeprinty.github.io/" target="_blank">Blake</a>
