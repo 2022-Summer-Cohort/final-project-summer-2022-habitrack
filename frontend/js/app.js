@@ -49,9 +49,9 @@ function makeLoginView() {
         alert("Password did not match try again.");
       } else if (password == confirmPassword) {
         const newAccountJson = {
-          username: newUser.value,
-          password: password.value,
-          // "habits": [],
+          username: newUser,
+          password: password,
+          "habits": [],
         };
         fetch(`http://localhost:8080/api/accounts/newAccount`, {
           method: "POST",
@@ -62,7 +62,7 @@ function makeLoginView() {
         })
           .then((res) => res.json())
           .then((account) => {
-            makeAccountView(account, newUser.value);
+            makeAccountView(account.habits, account.username);
           });
       }
     }

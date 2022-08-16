@@ -24,7 +24,7 @@ public class AccountController {
     @PostMapping("/api/accounts/newAccount")
     public Account createNewAccount(@RequestBody Account accountToAdd) {
         accountRepo.save(accountToAdd);
-        return accountToAdd;
+        return accountRepo.findById(accountToAdd.getId()).get();
     }
 
     @GetMapping("/api/{username}/habits")
