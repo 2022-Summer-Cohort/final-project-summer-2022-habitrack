@@ -346,3 +346,6 @@
 .habit-logs{
   display: none;
 }
+#log-btn{
+  text-align: center;
+}

@@ -230,6 +230,15 @@ function makeAccountView(habits, username) {
           makeAccountView(habits, username);
         });
     });
+
+    const button = document.querySelector(".dropbtn");
+button.addEventListener("click", () => {
+  myFunction();
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
   }
 
   function makeNewHabitView(username) {
@@ -276,6 +285,14 @@ function makeAccountView(habits, username) {
           makeAccountView(habits, username);
         });
     });
+    const button = document.querySelector(".dropbtn");
+button.addEventListener("click", () => {
+  myFunction();
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
   }
   function makeHabitSummaryView(habit) {
     container.innerHTML = header();
@@ -403,10 +420,6 @@ function makeAccountView(habits, username) {
     myProgress.style.width = "" + percentDone*progressBar + "px";
     console.log(percentDone);
     
-    
-    
-   
-    
   }
   function makeAllLogView(habit){
     container.innerHTML = header();
@@ -414,7 +427,18 @@ function makeAccountView(habits, username) {
     const logPages = document.querySelectorAll(".log__info");
     const logBackBTN = document.querySelector(".log__back__btn");
     const habitId = document.querySelector(".habit__id");
+    const button = document.querySelector(".dropbtn");
+    button.addEventListener("click", () => {
+      myFunction();
+    });
+    
+    const colorFill = document.querySelector(".habit-color")
+    const logPageFill = document.querySelector(".log");
+    logPageFill.style.backgroundColor = colorFill.value;
 
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
 
     logBackBTN.addEventListener("click", () => {
       fetch(`http://localhost:8080/api/habits/${habitId.value}`)
@@ -423,15 +447,6 @@ function makeAccountView(habits, username) {
           makeHabitSummaryView(habit);
         });
     });
-    // logPages.forEach(log => {
-    //   const logDate = log.querySelector(".log__date");
-    //   const logTime = log.querySelector(".log__time");
-    //   const logNote = log.querySelector(".log__note");
-    //   const logRating = log.querySelector("log-rating");
-    //   // const logJSON = log.querySelector("")
-    //   console.log(logTime.value);
-    // })
-    // const logRating = log.querySelector("log-rating");
-    // logRating.innerHTML = 
+   
   }
 }

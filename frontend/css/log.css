@@ -21,7 +21,12 @@ margin-top: 2%;
     flex-direction: column;
     border-radius: 44px;
 }
-
+.log__back__btn{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-left: 10px;
+}
 .log ul{
     list-style: none;
 }
@@ -48,7 +53,4 @@ margin-top: 2%;
     padding: 1%;
 }
 
-.log__back__btn{
-    text-align: center;
-    margin-left: 48%;
-}
+
