@@ -189,6 +189,7 @@ function makeAccountView(habits, username) {
     logDate.value = new Date().toISOString().split('T')[0];
     const logTime = document.querySelector(".log-time");
     logTime.value = currentTime;
+   
     console.log(currentTime);
 
     const logReflection = document.querySelector(".log-reflection");
@@ -196,13 +197,66 @@ function makeAccountView(habits, username) {
 
     const saveButton = document.querySelector(".save-button");
     saveButton.addEventListener("click", () => {
+      let amOrPm = "AM";
+      let hours = logTime.value.substring(0,2);
+      console.log(hours);
+      switch(hours){
+       case "13":
+         hours = "01";
+         amOrPm = "PM";
+         break;
+       case "14":
+         hours = "02";
+         amOrPm = "PM";
+         break;
+       case "15":
+         hours = "03";
+         amOrPm = "PM";
+         break;
+       case "16":
+         hours = "04";
+         amOrPm = "PM";
+         break;
+       case "17":
+         hours = "05";
+         amOrPm = "PM";
+         break;
+       case "18":
+         hours = "06";
+         amOrPm = "PM";
+         break;
+       case "19":
+         hours = "07";
+         amOrPm = "PM";
+         break;
+       case "20":
+         hours = "08";
+         amOrPm = "PM";
+         break;
+       case "21":
+         hours ="09"
+         amOrPm = "PM";
+         break;
+       case "22":
+         hours ="10";
+         amOrPm = "PM";
+         break;
+       case "23":
+         hours = "11";
+         amOrPm = "PM";
+         break;
+      }
+
+      const timeLogStandard = hours + logTime.value.substring(2) + amOrPm;
+      console.log(timeLogStandard);
       const newLogJson = {
         note: logNote.value,
-        time: currentTime,
+        time: timeLogStandard,
         date: logDate.value,
         rating: logReflection.value,
       };
-
+      
+     
       if (logNote.value == []) {
         alert("Please enter note for this log.");
       } else {
@@ -325,88 +379,6 @@ function myFunction() {
         makeAllLogView(habit);
       })
     })
-
-    // const date = new Date();
-
-    // const renderCalendar = () => {
-    //   date.setDate(1);
-    //   const monthDays = document.querySelector(".days");
-    //   const lastDay = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth() + 1,
-    //     0
-    //   ).getDate();
-
-    //   const prevLastDay = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth(),
-    //     0
-    //   ).getDate();
-    //   console.log(prevLastDay);
-
-    //   const firstDayIndex = date.getDay();
-
-    //   const lastDayIndex = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth() + 1,
-    //     0
-    //   ).getDay();
-
-    //   const nextDays = 7 - lastDayIndex - 1;
-
-    //   const months = [
-    //     "January",
-    //     "February",
-    //     "March",
-    //     "April",
-    //     "May",
-    //     "June",
-    //     "July",
-    //     "August",
-    //     "September",
-    //     "October",
-    //     "November",
-    //     "December",
-    //   ];
-
-    //   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-
-    //   document.querySelector(".date p").innerHTML = new Date().toDateString();
-
-    //   let days = "";
-
-    //   for (let x = firstDayIndex; x > 0; x--) {
-    //     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-    //   }
-
-    //   for (let i = 1; i <= lastDay; i++) {
-    //     if (
-    //       i === new Date().getDate() &&
-    //       date.getMonth() === new Date().getMonth()
-    //     ) {
-    //       days += `<div class="today">${i}</div>`;
-    //     } else {
-    //       days += `<div>${i}</div>`;
-    //     }
-    //   }
-
-    //   for (let j = 1; j <= nextDays; j++) {
-    //     days += `<div class="next-date">${j}</div>`;
-    //     monthDays.innerHTML = days;
-    //   }
-
-    // };
-
-    // document.querySelector(".prev").addEventListener("click", () => {
-    //   date.setMonth(date.getMonth() - 1);
-    //   renderCalendar();
-    // });
-    // document.querySelector(".next").addEventListener("click", () => {
-    //   date.setMonth(date.getMonth() + 1);
-    //   renderCalendar();
-    // });
-
-    // renderCalendar();
    
     const logTotal = habit.logs; 
     const logCount = logTotal.length;
@@ -431,6 +403,13 @@ function myFunction() {
     button.addEventListener("click", () => {
       myFunction();
     });
+    
+    // let ratingInt = document.querySelectorAll(".log-rating");
+    // console.log(ratingInt);
+    // ratingInt.forEach( (rating) => {
+   
+            
+    // })
     
     const colorFill = document.querySelector(".habit-color")
     const logPageFill = document.querySelector(".log");
