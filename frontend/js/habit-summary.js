@@ -29,6 +29,9 @@ return`
                     <input type="hidden" id="habitID" value="${habit.id}">
                 </div>
             </div>
+            <div class="chart-container">
+                <canvas id="canvas"></canvas>
+            </div>
             
             </div>
         

@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import wcci.habitrack.habitrack.model.Habit;
 import wcci.habitrack.habitrack.model.Account;
+import wcci.habitrack.habitrack.model.Log;
 import wcci.habitrack.habitrack.repo.HabitRepository;
 import wcci.habitrack.habitrack.repo.LogRepository;
 import wcci.habitrack.habitrack.repo.AccountRepository;
@@ -38,9 +39,12 @@ public class Populator implements CommandLineRunner {
         habitRepo.save(thirdHabit);
         Habit fourthHabit = new Habit("exercise",account2,false,"build","#FFA07A","","wellness",3,"week");
         habitRepo.save(fourthHabit);
-
-
-
+        Log firstLog = new Log(true, "Test", "time", "date", 5, thirdHabit);
+        logRepo.save(firstLog);
+        Log secondLog = new Log(true, "Test", "time", "date", 1, thirdHabit);
+        logRepo.save(secondLog);
+        Log thirdLog = new Log(true, "Test", "time", "date", 3, thirdHabit);
+        logRepo.save(thirdLog);
 
 
     }

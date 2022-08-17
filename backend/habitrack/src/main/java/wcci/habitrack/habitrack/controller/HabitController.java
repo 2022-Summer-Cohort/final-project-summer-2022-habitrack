@@ -86,4 +86,9 @@ public class HabitController {
         Habit tempHabit = habitRepo.findById(id).get();
         return tempHabit;
     }
+
+    @GetMapping("/api/habits/{id}/logs")
+    public Iterable<Log> getHabitLogs(@PathVariable Long id) {
+        return logRepo.findAll();
+    }
 }
