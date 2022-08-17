@@ -15,19 +15,19 @@ export default function logPage(habit) {
             let ratingInt = log.rating;
             console.log(ratingInt)
             switch(ratingInt) {
-                case 1:
+                case 5:
                   ratingInt = "😁";
                   break;
-                case 2:
+                case 4:
                   ratingInt = "😐";
                   break;
                 case 3:
                   ratingInt = "😖";
                   break;
-                case 4:
+                case 2:
                   ratingInt = "😓";
                   break;
-                case 5:
+                case 1:
                   ratingInt = "😕";
                   break;
               }
