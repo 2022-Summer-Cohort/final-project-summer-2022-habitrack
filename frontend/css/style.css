@@ -25,6 +25,7 @@
   .habits-background{
     width: 80%;
     height: auto;
+    font-size: 9px;
   }
 }
 .light-gray {
@@ -171,7 +172,7 @@
     align-items: center;
 }
 @media screen and (max-width: 600px){
-  .new-habit-container, .log-container{
+  .new-habit-container, .log-container, .habit-container, .log-page-container{
     width: 80%;
     height: auto;
   }
@@ -345,4 +346,7 @@
 }
 .habit-logs{
   display: none;
+}
+#log-btn{
+  text-align: center;
 }

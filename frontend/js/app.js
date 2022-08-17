@@ -4,6 +4,7 @@ import newHabit from "./newHabit.js";
 import login from "./login.js";
 import userDashboard from "./userDashboard.js";
 import habitSummary from "./habit-summary.js";
+import logPage from "./log-page.js";
 
 const container = document.querySelector(".container");
 
@@ -48,9 +49,9 @@ function makeLoginView() {
         alert("Password did not match try again.");
       } else if (password == confirmPassword) {
         const newAccountJson = {
-          username: newUser.value,
-          password: password.value,
-          // "habits": [],
+          username: newUser,
+          password: password,
+          "habits": [],
         };
         fetch(`http://localhost:8080/api/accounts/newAccount`, {
           method: "POST",
@@ -61,7 +62,7 @@ function makeLoginView() {
         })
           .then((res) => res.json())
           .then((account) => {
-            makeAccountView(account, newUser.value);
+            makeAccountView(account.habits, account.username);
           });
       }
     }
@@ -122,7 +123,9 @@ function makeAccountView(habits, username) {
   
   habitColorChange.forEach((habitColorChoice) => {
     const numReps = habitColorChoice.querySelector(".logs")
+    console.log(numReps)
     const percentComplete = numReps.value/66;
+    console.log(percentComplete);
     const width = document.querySelector(".habit-progress").offsetWidth;
     const percentProg = habitColorChoice.querySelector(".percent-progress");
     const habitColor = habitColorChoice.querySelector(".habit-color");
@@ -186,6 +189,7 @@ function makeAccountView(habits, username) {
     logDate.value = new Date().toISOString().split('T')[0];
     const logTime = document.querySelector(".log-time");
     logTime.value = currentTime;
+   
     console.log(currentTime);
 
     const logReflection = document.querySelector(".log-reflection");
@@ -193,13 +197,66 @@ function makeAccountView(habits, username) {
 
     const saveButton = document.querySelector(".save-button");
     saveButton.addEventListener("click", () => {
+      let amOrPm = "AM";
+      let hours = logTime.value.substring(0,2);
+      console.log(hours);
+      switch(hours){
+       case "13":
+         hours = "01";
+         amOrPm = "PM";
+         break;
+       case "14":
+         hours = "02";
+         amOrPm = "PM";
+         break;
+       case "15":
+         hours = "03";
+         amOrPm = "PM";
+         break;
+       case "16":
+         hours = "04";
+         amOrPm = "PM";
+         break;
+       case "17":
+         hours = "05";
+         amOrPm = "PM";
+         break;
+       case "18":
+         hours = "06";
+         amOrPm = "PM";
+         break;
+       case "19":
+         hours = "07";
+         amOrPm = "PM";
+         break;
+       case "20":
+         hours = "08";
+         amOrPm = "PM";
+         break;
+       case "21":
+         hours ="09"
+         amOrPm = "PM";
+         break;
+       case "22":
+         hours ="10";
+         amOrPm = "PM";
+         break;
+       case "23":
+         hours = "11";
+         amOrPm = "PM";
+         break;
+      }
+
+      const timeLogStandard = hours + logTime.value.substring(2) + amOrPm;
+      console.log(timeLogStandard);
       const newLogJson = {
         note: logNote.value,
-        timeStamp: logTime.value,
+        time: timeLogStandard,
         date: logDate.value,
         rating: logReflection.value,
       };
-
+      
+     
       if (logNote.value == []) {
         alert("Please enter note for this log.");
       } else {
@@ -227,6 +284,15 @@ function makeAccountView(habits, username) {
           makeAccountView(habits, username);
         });
     });
+
+    const button = document.querySelector(".dropbtn");
+button.addEventListener("click", () => {
+  myFunction();
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
   }
 
   function makeNewHabitView(username) {
@@ -238,7 +304,6 @@ function makeAccountView(habits, username) {
     const habitFreq = document.querySelector("#numOfTimes");
     const perDayOrWeek = document.querySelector("#per");
     const habitIcon = document.querySelector("#habit-icon");
-    const habitType = document.querySelector("#habit-type");
 
     const saveButton = document.querySelector(".new-habit-save-button");
     saveButton.addEventListener("click", () => {
@@ -274,6 +339,14 @@ function makeAccountView(habits, username) {
           makeAccountView(habits, username);
         });
     });
+    const button = document.querySelector(".dropbtn");
+button.addEventListener("click", () => {
+  myFunction();
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
   }
   function makeHabitSummaryView(habit) {
     container.innerHTML = header();
@@ -297,87 +370,15 @@ function makeAccountView(habits, username) {
       const habitColor = habitColorChoice.querySelector(".habit-color");
       habitColorChoice.style.backgroundColor = habitColor.value;
     });
-    // const date = new Date();
-
-    // const renderCalendar = () => {
-    //   date.setDate(1);
-    //   const monthDays = document.querySelector(".days");
-    //   const lastDay = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth() + 1,
-    //     0
-    //   ).getDate();
-
-    //   const prevLastDay = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth(),
-    //     0
-    //   ).getDate();
-    //   console.log(prevLastDay);
-
-    //   const firstDayIndex = date.getDay();
-
-    //   const lastDayIndex = new Date(
-    //     date.getFullYear(),
-    //     date.getMonth() + 1,
-    //     0
-    //   ).getDay();
-
-    //   const nextDays = 7 - lastDayIndex - 1;
-
-    //   const months = [
-    //     "January",
-    //     "February",
-    //     "March",
-    //     "April",
-    //     "May",
-    //     "June",
-    //     "July",
-    //     "August",
-    //     "September",
-    //     "October",
-    //     "November",
-    //     "December",
-    //   ];
-
-    //   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-
-    //   document.querySelector(".date p").innerHTML = new Date().toDateString();
-
-    //   let days = "";
-
-    //   for (let x = firstDayIndex; x > 0; x--) {
-    //     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-    //   }
-
-    //   for (let i = 1; i <= lastDay; i++) {
-    //     if (
-    //       i === new Date().getDate() &&
-    //       date.getMonth() === new Date().getMonth()
-    //     ) {
-    //       days += `<div class="today">${i}</div>`;
-    //     } else {
-    //       days += `<div>${i}</div>`;
-    //     }
-    //   }
-
-    //   for (let j = 1; j <= nextDays; j++) {
-    //     days += `<div class="next-date">${j}</div>`;
-    //     monthDays.innerHTML = days;
-    //   }
-
-    // };
-
-    // document.querySelector(".prev").addEventListener("click", () => {
-    //   date.setMonth(date.getMonth() - 1);
-    //   renderCalendar();
-    // });
-    // document.querySelector(".next").addEventListener("click", () => {
-    //   date.setMonth(date.getMonth() + 1);
-    //   renderCalendar();
-    // });
-
-    // renderCalendar();
+    const habitID = document.querySelector("#habitID");
+    const logBTN = document.querySelector("#log-btn");
+    logBTN.addEventListener("click", () => {
+      fetch(`http://localhost:8080/api/habits/${habitID.value}/allLogs`)
+      .then((res) => res.json())
+      .then((habit) => {
+        makeAllLogView(habit);
+      })
+    })
    
     const logTotal = habit.logs; 
     const logCount = logTotal.length;
@@ -391,9 +392,40 @@ function makeAccountView(habits, username) {
     myProgress.style.width = "" + percentDone*progressBar + "px";
     console.log(percentDone);
     
+  }
+  function makeAllLogView(habit){
+    container.innerHTML = header();
+    container.innerHTML += logPage(habit);
+    const logPages = document.querySelectorAll(".log__info");
+    const logBackBTN = document.querySelector(".log__back__btn");
+    const habitId = document.querySelector(".habit__id");
+    const button = document.querySelector(".dropbtn");
+    button.addEventListener("click", () => {
+      myFunction();
+    });
     
-    
+    // let ratingInt = document.querySelectorAll(".log-rating");
+    // console.log(ratingInt);
+    // ratingInt.forEach( (rating) => {
    
+            
+    // })
     
+    const colorFill = document.querySelector(".habit-color")
+    const logPageFill = document.querySelector(".log");
+    logPageFill.style.backgroundColor = colorFill.value;
+
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    logBackBTN.addEventListener("click", () => {
+      fetch(`http://localhost:8080/api/habits/${habitId.value}`)
+        .then((res) => res.json())
+        .then((habit) => {
+          makeHabitSummaryView(habit);
+        });
+    });
+   
   }
 }
