@@ -7,6 +7,10 @@ return`
                 <p class="fa-solid fa-x">&#x2715;</p>
             </div>
             <h1>${habit.name}</h1>
+
+            <div class="chart-container">
+                <canvas id="canvas"></canvas>
+            </div>
             <input type="hidden" class="habit-color" name="background-color" value="${habit.color}">
             
             <div class="goal">
@@ -30,9 +34,7 @@ return`
                 </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="canvas"></canvas>
-            </div>
+            
             
             
             </div>
