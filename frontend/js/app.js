@@ -304,7 +304,7 @@ function myFunction() {
     const habitFreq = document.querySelector("#numOfTimes");
     const perDayOrWeek = document.querySelector("#per");
     const habitIcon = document.querySelector("#habit-icon");
-
+    const habitType = document.querySelector("#habit-type")
     const saveButton = document.querySelector(".new-habit-save-button");
     saveButton.addEventListener("click", () => {
       const newHabitJson = {
