@@ -1,0 +1,18 @@
+### Get all habits
+GET http://localhost:8080/api/habits
+
+
+### Change habit name
+PATCH http://localhost:8080/api/habits/2/editName
+
+Falling asleep
+
+### Create a new account.
+POST http://localhost:8080/api/accounts/newAccount
+Content-type: application/Json
+
+{"username": "username", "password":"password", "habits": []}
+
+
+### Get an account.
+GET http://localhost:8080/api/Administrator/habits
