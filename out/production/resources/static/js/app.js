@@ -51,9 +51,9 @@ function makeLoginView() {
         const newAccountJson = {
           username: newUser,
           password: password,
-          "habits": [],
+          habits: [],
         };
-        fetch(`http://localhost:8080/api/accounts/newAccount`, {
+        fetch(`/api/accounts/newAccount`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -78,7 +78,7 @@ function makeLoginView() {
     } else if (userPassword == "") {
       alert("Please type in Password");
     } else {
-      fetch(`http://localhost:8080/api/${username}/habits`)
+      fetch(`/api/${username}/habits`)
         .then((res) => res.json())
         .then((habits) => {
           makeAccountView(habits, username);
@@ -120,18 +120,18 @@ function makeAccountView(habits, username) {
   });
 
   const habitColorChange = document.querySelectorAll(".my-habit-progress");
-  
+
   habitColorChange.forEach((habitColorChoice) => {
-    const numReps = habitColorChoice.querySelector(".logs")
-    console.log(numReps)
-    const percentComplete = numReps.value/66;
+    const numReps = habitColorChoice.querySelector(".logs");
+    console.log(numReps);
+    const percentComplete = numReps.value / 66;
     console.log(percentComplete);
     const width = document.querySelector(".habit-progress").offsetWidth;
     const percentProg = habitColorChoice.querySelector(".percent-progress");
     const habitColor = habitColorChoice.querySelector(".habit-color");
     habitColorChoice.style.backgroundColor = habitColor.value;
-    habitColorChoice.style.width = "" + percentComplete*width + "px";
-    percentProg.innerText = Math.floor(percentComplete*100) + "%";
+    habitColorChoice.style.width = "" + percentComplete * width + "px";
+    percentProg.innerText = Math.floor(percentComplete * 100) + "%";
   });
 
   const habitsView = document.querySelectorAll(".habit");
@@ -143,14 +143,14 @@ function makeAccountView(habits, username) {
     const habitColorChange = habit.querySelector(".habit-progress");
 
     logEntry.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/habits/${habitId.value}`)
+      fetch(`/api/habits/${habitId.value}`)
         .then((res) => res.json())
         .then((habit) => {
           makeLogEntryView(habit);
         });
     });
     deleteHabit.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/habits/${habitId.value}`, {
+      fetch(`/api/habits/${habitId.value}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -160,7 +160,7 @@ function makeAccountView(habits, username) {
     });
 
     habitColorChange.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/habits/${habitId.value}`)
+      fetch(`/api/habits/${habitId.value}`)
         .then((res) => res.json())
         .then((habit) => {
           makeHabitSummaryView(habit);
@@ -181,15 +181,15 @@ function makeAccountView(habits, username) {
     const logColor = document.querySelector(".log-form");
     const habitColor = document.querySelector(".habit-color");
     logColor.style.backgroundColor = habitColor.value;
-  
+
     const habitId = document.querySelector(".habit-id");
     const logDate = document.querySelector(".log-date");
     const today = new Date();
-    const currentTime = today.getHours() + ':' + today.getMinutes();
-    logDate.value = new Date().toISOString().split('T')[0];
+    const currentTime = today.getHours() + ":" + today.getMinutes();
+    logDate.value = new Date().toISOString().split("T")[0];
     const logTime = document.querySelector(".log-time");
     logTime.value = currentTime;
-   
+
     console.log(currentTime);
 
     const logReflection = document.querySelector(".log-reflection");
@@ -198,53 +198,53 @@ function makeAccountView(habits, username) {
     const saveButton = document.querySelector(".save-button");
     saveButton.addEventListener("click", () => {
       let amOrPm = "AM";
-      let hours = logTime.value.substring(0,2);
+      let hours = logTime.value.substring(0, 2);
       console.log(hours);
-      switch(hours){
-       case "13":
-         hours = "01";
-         amOrPm = "PM";
-         break;
-       case "14":
-         hours = "02";
-         amOrPm = "PM";
-         break;
-       case "15":
-         hours = "03";
-         amOrPm = "PM";
-         break;
-       case "16":
-         hours = "04";
-         amOrPm = "PM";
-         break;
-       case "17":
-         hours = "05";
-         amOrPm = "PM";
-         break;
-       case "18":
-         hours = "06";
-         amOrPm = "PM";
-         break;
-       case "19":
-         hours = "07";
-         amOrPm = "PM";
-         break;
-       case "20":
-         hours = "08";
-         amOrPm = "PM";
-         break;
-       case "21":
-         hours ="09"
-         amOrPm = "PM";
-         break;
-       case "22":
-         hours ="10";
-         amOrPm = "PM";
-         break;
-       case "23":
-         hours = "11";
-         amOrPm = "PM";
-         break;
+      switch (hours) {
+        case "13":
+          hours = "01";
+          amOrPm = "PM";
+          break;
+        case "14":
+          hours = "02";
+          amOrPm = "PM";
+          break;
+        case "15":
+          hours = "03";
+          amOrPm = "PM";
+          break;
+        case "16":
+          hours = "04";
+          amOrPm = "PM";
+          break;
+        case "17":
+          hours = "05";
+          amOrPm = "PM";
+          break;
+        case "18":
+          hours = "06";
+          amOrPm = "PM";
+          break;
+        case "19":
+          hours = "07";
+          amOrPm = "PM";
+          break;
+        case "20":
+          hours = "08";
+          amOrPm = "PM";
+          break;
+        case "21":
+          hours = "09";
+          amOrPm = "PM";
+          break;
+        case "22":
+          hours = "10";
+          amOrPm = "PM";
+          break;
+        case "23":
+          hours = "11";
+          amOrPm = "PM";
+          break;
       }
 
       const timeLogStandard = hours + logTime.value.substring(2) + amOrPm;
@@ -255,12 +255,11 @@ function makeAccountView(habits, username) {
         date: logDate.value,
         rating: logReflection.value,
       };
-      
-     
+
       if (logNote.value == []) {
         alert("Please enter note for this log.");
       } else {
-        fetch(`http://localhost:8080/api/habits/${habitId.value}/newLog`, {
+        fetch(`/api/habits/${habitId.value}/newLog`, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -278,7 +277,7 @@ function makeAccountView(habits, username) {
     const cancelButton = document.querySelector(".back-button");
 
     cancelButton.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/${username}/habits`)
+      fetch(`/api/${username}/habits`)
         .then((res) => res.json())
         .then((habits) => {
           makeAccountView(habits, username);
@@ -286,13 +285,13 @@ function makeAccountView(habits, username) {
     });
 
     const button = document.querySelector(".dropbtn");
-button.addEventListener("click", () => {
-  myFunction();
-});
+    button.addEventListener("click", () => {
+      myFunction();
+    });
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
   }
 
   function makeNewHabitView(username) {
@@ -304,7 +303,7 @@ function myFunction() {
     const habitFreq = document.querySelector("#numOfTimes");
     const perDayOrWeek = document.querySelector("#per");
     const habitIcon = document.querySelector("#habit-icon");
-    const habitType = document.querySelector("#habit-type")
+    const habitType = document.querySelector("#habit-type");
     const saveButton = document.querySelector(".new-habit-save-button");
     saveButton.addEventListener("click", () => {
       const newHabitJson = {
@@ -317,7 +316,7 @@ function myFunction() {
       };
       console.log(newHabitJson);
       console.log(username);
-      fetch(`http://localhost:8080/api/${username}/newHabit`, {
+      fetch(`/api/${username}/newHabit`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -333,22 +332,21 @@ function myFunction() {
     const cancelButton = document.querySelector(".back-button");
 
     cancelButton.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/${username}/habits`)
+      fetch(`/api/${username}/habits`)
         .then((res) => res.json())
         .then((habits) => {
           makeAccountView(habits, username);
         });
     });
     const button = document.querySelector(".dropbtn");
-button.addEventListener("click", () => {
-  myFunction();
-});
+    button.addEventListener("click", () => {
+      myFunction();
+    });
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
   }
-
 
   function makeHabitSummaryView(habit) {
     container.innerHTML = header();
@@ -356,16 +354,17 @@ function myFunction() {
 
     const button = document.querySelector(".dropbtn");
     button.addEventListener("click", () => {
-      myFunction();})
+      myFunction();
+    });
 
     const backBtn = document.querySelector(".back-button");
-    backBtn.addEventListener("click", ()=> {
-      fetch(`http://localhost:8080/api/${username}/habits`)
-      .then((res) => res.json())
-      .then((habits) => {
-        makeAccountView(habits, username);
-      })
-    })
+    backBtn.addEventListener("click", () => {
+      fetch(`/api/${username}/habits`)
+        .then((res) => res.json())
+        .then((habits) => {
+          makeAccountView(habits, username);
+        });
+    });
 
     const habitColorChange = document.querySelectorAll(".habit-form");
 
@@ -376,87 +375,86 @@ function myFunction() {
     const habitID = document.querySelector("#habitID");
     const logBTN = document.querySelector("#log-btn");
     logBTN.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/habits/${habitID.value}/allLogs`)
-      .then((res) => res.json())
-      .then((habit) => {
-        makeAllLogView(habit);
-      })
-    })
-   
-    const logTotal = habit.logs; 
+      fetch(`/api/habits/${habitID.value}/allLogs`)
+        .then((res) => res.json())
+        .then((habit) => {
+          makeAllLogView(habit);
+        });
+    });
+
+    const logTotal = habit.logs;
     const logCount = logTotal.length;
-    const repetitions = document.querySelector(".streak")
+    const repetitions = document.querySelector(".streak");
     repetitions.innerHTML = logCount;
-    console.log(logCount)
-    const progressBar = document.querySelector(".progress-bar").offsetWidth
+    console.log(logCount);
+    const progressBar = document.querySelector(".progress-bar").offsetWidth;
     console.log(progressBar);
-    const percentDone = logCount/66;
-    const myProgress = document.getElementById('my-bar');
-    myProgress.style.width = "" + percentDone*progressBar + "px";
+    const percentDone = logCount / 66;
+    const myProgress = document.getElementById("my-bar");
+    myProgress.style.width = "" + percentDone * progressBar + "px";
     console.log(percentDone);
 
     var xmlhttp = new XMLHttpRequest();
-    var url = `http://localhost:8080/api/habits/${habitID.value}/logs`;
+    var url = `/api/habits/${habitID.value}/logs`;
     // console.log(url);
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-    
-            // Places to store ratings and the number of data sources
-            var ratings = [];
-            var numDataSources = []
-            
-            // Iterate through each log and pull the ratings
-            for (var index in data) {
-                // Store the ratings and the number of logs
-                ratings.push(data[index].rating);
-                numDataSources.push(Number(index)+1);
-            }
-    
-            const ctx = document.getElementById('canvas').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: numDataSources,
-                    datasets: [{
-                        label: 'Ratings',
-                        data: ratings,
-                        backgroundColor: [
-                            // 'rgba(255, 99, 132, 0.2)',
-                            // 'rgba(54, 162, 235, 0.2)',
-                            // 'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 255, 255, 1)'
-                            // 'rgba(153, 102, 255, 0.2)',
-                            // 'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            // 'rgba(255, 99, 132, 1)',
-                            // 'rgba(54, 162, 235, 1)',
-                            // 'rgba(255, 206, 86, 1)',
-                            // 'rgba(75, 192, 192, 1)',
-                            // 'rgba(153, 102, 255, 1)',
-                            'rgba(0,0,0 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-    
-        }
-    }
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
 
-    
+        // Places to store ratings and the number of data sources
+        var ratings = [];
+        var numDataSources = [];
+
+        // Iterate through each log and pull the ratings
+        for (var index in data) {
+          // Store the ratings and the number of logs
+          ratings.push(data[index].rating);
+          numDataSources.push(Number(index) + 1);
+        }
+
+        const ctx = document.getElementById("canvas").getContext("2d");
+        const myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: numDataSources,
+            datasets: [
+              {
+                label: "Ratings",
+                data: ratings,
+                backgroundColor: [
+                  // 'rgba(255, 99, 132, 0.2)',
+                  // 'rgba(54, 162, 235, 0.2)',
+                  // 'rgba(255, 206, 86, 0.2)',
+                  "rgba(255, 255, 255, 1)",
+                  // 'rgba(153, 102, 255, 0.2)',
+                  // 'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                  // 'rgba(255, 99, 132, 1)',
+                  // 'rgba(54, 162, 235, 1)',
+                  // 'rgba(255, 206, 86, 1)',
+                  // 'rgba(75, 192, 192, 1)',
+                  // 'rgba(153, 102, 255, 1)',
+                  "rgba(0,0,0 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+    };
   }
-  function makeAllLogView(habit){
+  function makeAllLogView(habit) {
     container.innerHTML = header();
     container.innerHTML += logPage(habit);
     const logPages = document.querySelectorAll(".log__info");
@@ -466,15 +464,14 @@ function myFunction() {
     button.addEventListener("click", () => {
       myFunction();
     });
-    
+
     // let ratingInt = document.querySelectorAll(".log-rating");
     // console.log(ratingInt);
     // ratingInt.forEach( (rating) => {
-   
-            
+
     // })
-    
-    const colorFill = document.querySelector(".habit-color")
+
+    const colorFill = document.querySelector(".habit-color");
     const logPageFill = document.querySelector(".log");
     logPageFill.style.backgroundColor = colorFill.value;
 
@@ -483,20 +480,19 @@ function myFunction() {
     }
 
     logBackBTN.addEventListener("click", () => {
-      fetch(`http://localhost:8080/api/habits/${habitId.value}`)
+      fetch(`/api/habits/${habitId.value}`)
         .then((res) => res.json())
         .then((habit) => {
           makeHabitSummaryView(habit);
         });
     });
-   
   }
 }
 
 // Chart JS (Not sure where to put it)
 
 // var xmlhttp = new XMLHttpRequest();
-// var url = "http://localhost:8080/api/habits/5/logs";
+// var url = "/api/habits/5/logs";
 // xmlhttp.open("GET", url, true);
 // xmlhttp.send();
 // xmlhttp.onreadystatechange = function () {
@@ -507,7 +503,7 @@ function myFunction() {
 //         // Places to store ratings and the number of data sources
 //         var ratings = [];
 //         var numDataSources = []
-        
+
 //         // Iterate through each log and pull the ratings
 //         for (var index in data) {
 //             // Store the ratings and the number of logs
@@ -553,5 +549,3 @@ function myFunction() {
 
 //     }
 // }
-
-
