@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Entry Prototype</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="log-container">
+        
+      <div class="log-form">
+        <h1>Habit Name</h1>
+        <input
+          class="log-date"
+          type="date"
+          name="date"
+          id="log-date"
+          value=""
+          min="2000-01-01"
+          max="2025-01-01"
+        />
+        <input class="log-time" type="time" name="time" id="log-time" value="00:00" />
+        <div class="yes-checkbox">
+          <label for="log-completed-yes">Yes</label>
+          <input
+            type="checkbox"
+            name="completed"
+            value="yes"
+            id="log-completed-yes"
+          />
+          <label for="log-completed-no">No</label>
+          <input
+            type="checkbox"
+            name="completed"
+            value="no"
+            id="log-completed-no"
+          />
+          
+        </div>
+        <div class="reflection">
+            <!-- <button onclick="myFunction()" class="dropbtn" value="">I am feeling: &nbsp;</button> -->
+            <ul>
+                <span>I am feeling:</span>
+              <select id="myDropdown" class="dropdown-content">
+                <option value=""></option>
+                <option value="">😁</option>
+                <option value="">😐</option>
+                <option value="">😖</option>
+                <option value="">😓</option>
+                <option value="">😕</option>
+              </select>
+            </ul>
+        </div>
+        <div class="log-notes">
+            <textarea name="logNotes" id="note" cols="30" rows="10" placeholder="add note"></textarea>
+            <br>
+            <br>
+            <button class="button-40">Save</button>
+            <h3 class="cancel-button">Cancel</h3>
+        </div>
+
+      </div>
+    </div>
+    <script src="/js/navbar.js"></script>
+  </body>
+</html>
